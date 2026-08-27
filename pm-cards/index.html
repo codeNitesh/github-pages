@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+<meta name="theme-color" content="#0b0d12">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="PM Cards">
+<link rel="manifest" href="./manifest.webmanifest">
+<link rel="apple-touch-icon" href="./icon-192.png">
+<title>PM Cards</title>
+<style>
+:root{--bg:#0b0d12;--card:#151922;--text:#f5f7fb;--muted:#9ba3b2;--line:#282e3a;--accent:#8b7cff}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{margin:0;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",sans-serif;min-height:100svh;overflow:hidden}
+.app{width:100%;max-width:620px;margin:auto;min-height:100svh;padding:18px 18px calc(18px + env(safe-area-inset-bottom));display:flex;flex-direction:column}
+header{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
+.brand{font-weight:800;letter-spacing:-.04em;font-size:21px}.brand span{color:var(--accent)}
+.icon{border:1px solid var(--line);background:#11151d;color:var(--text);width:42px;height:42px;border-radius:14px;font-size:20px}
+.meta{display:flex;justify-content:space-between;color:var(--muted);font-size:14px;margin-bottom:9px}
+.progress{height:5px;background:#202530;border-radius:99px;overflow:hidden;margin-bottom:16px}.progress i{display:block;height:100%;background:var(--accent);border-radius:99px;width:0;transition:.25s}
+.stage{flex:1;display:flex;align-items:center;justify-content:center;min-height:0}
+.card{width:100%;min-height:56svh;max-height:65svh;background:var(--card);border:1px solid var(--line);border-radius:28px;padding:28px 24px;display:flex;flex-direction:column;justify-content:space-between;box-shadow:0 18px 60px #0005;touch-action:pan-y}
+.tag{font-size:12px;font-weight:800;color:var(--accent);text-transform:uppercase;letter-spacing:.12em}
+.question{font-size:clamp(28px,8vw,44px);line-height:1.08;letter-spacing:-.045em;font-weight:800;margin:22px 0}
+.answer{display:none}.answer.show{display:block}
+.answer h3{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.12em;margin:0 0 8px}
+.answer p{font-size:18px;line-height:1.48;margin:0 0 18px;color:#e9edf5}
+.instinct{border-left:3px solid var(--accent);padding:11px 13px;background:#1b1f2a;border-radius:0 13px 13px 0;font-size:14px;line-height:1.45;color:#d9deea}
+.hint{text-align:center;color:var(--muted);font-size:13px;margin-top:13px}
+.controls{display:flex;gap:10px;margin-top:14px}
+button.action{flex:1;border:0;border-radius:16px;height:54px;font-size:15px;font-weight:800}
+.reveal{background:var(--text);color:#0b0d12}.again{background:#27151b;color:#ff9aaa;border:1px solid #4a202a!important}.got{background:#12261b;color:#7cf0a1;border:1px solid #20482d!important}
+.done{display:none;text-align:center;padding:40px 15px}.done h1{font-size:40px;margin:0 0 10px}.done p{color:var(--muted);line-height:1.5}
+.reset{margin-top:18px;background:var(--text);color:#0b0d12;border:0;border-radius:15px;padding:14px 20px;font-weight:800}
+@media(min-width:700px){body{display:grid;place-items:center}.app{min-height:800px;height:100svh}.card{min-height:500px;max-height:620px}.question{font-size:42px}}
+</style>
+</head>
+<body>
+<div class="app">
+<header><div class="brand">PM<span>·</span>Cards</div><button class="icon" id="shuffle" aria-label="Shuffle">↯</button></header>
+<div class="meta"><span id="category">Product Fundamentals</span><span id="count">1 / 10</span></div>
+<div class="progress"><i id="bar"></i></div>
+<div class="stage">
+<main class="card" id="card">
+<div><div class="tag" id="level"></div><div class="question" id="question"></div>
+<div class="answer" id="answer"><h3>Answer</h3><p id="answerText"></p><div class="instinct"><b>🧠 PM instinct</b><br><span id="instinct"></span></div></div></div>
+<div class="hint" id="hint">Tap to reveal</div>
+</main>
+</div>
+<div class="controls" id="controls"></div>
+<section class="done" id="done"><div style="font-size:54px">🎉</div><h1>Deck complete.</h1><p>You finished this prototype deck.</p><button class="reset" id="restart">Review again</button></section>
+</div>
+<script src="./app.js"></script>
+</body>
+</html>
