@@ -1,9 +1,0 @@
-create-pages:
-  stage: deploy
-  script:
-    - mkdir public
-    - cp index.html app.js manifest.webmanifest sw.js icon-192.png icon-512.png public/
-  pages:
-    publish: public
-  rules:
-    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
